@@ -1,0 +1,9 @@
+Onion
+beef
+chicken
+eggs
+potato
+radish
+garlic
+lettuce
+tomato

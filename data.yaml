@@ -1,0 +1,7 @@
+train: C:\Users\user\Desktop\Coding_shit\Python\DL\CityU_Project\train
+val: C:\Users\user\Desktop\Coding_shit\Python\DL\CityU_Project\validation
+test: C:\Users\user\Desktop\Coding_shit\Python\DL\CityU_Project\test
+
+nc: 9
+
+names: ['Onion', 'beef', 'chicken', 'eggs', 'potato', 'radish', 'garlic', 'lettuce', 'tomato']

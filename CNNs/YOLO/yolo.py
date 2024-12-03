@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-model = YOLO(r'CNNs\YOLO\best.pt')
+model = YOLO(r'CNNs\YOLO\model.pt')
 classes = set()
 # results = model(source= r"C:\Users\user\Desktop\abc.mp4", show= True, conf= 0.4, save= True)
 results = model(source= r"C:\Users\user\Desktop\abc.mp4", stream= True)

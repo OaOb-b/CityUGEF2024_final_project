@@ -1,12 +1,12 @@
 from ultralytics import YOLO
 
-model = YOLO(r'CNNs\YOLO\model.pt')
+model = YOLO('/YOLO/model/model.pt')  #change the path if needed
 classes = set()
-# results = model(source= r"C:\Users\user\Desktop\abc.mp4", show= True, conf= 0.4, save= True)
-results = model(source= r"C:\Users\user\Desktop\abc.mp4", stream= True)
-for r in results:
-    boxes = r.boxes.cpu().numpy()
-    for i in boxes.cls:
-        classes.add(i)
+results = model(source=0, show= True, conf= 0.4, save= True)
+#results = model(source= 1, stream= True)
+#for r in results:
+#    boxes = r.boxes.cpu().numpy()
+#    for i in boxes.cls:
+#        classes.add(i)
 
 print(set(classes))

@@ -1,12 +1,16 @@
 from ultralytics import YOLO
+import tkinter
 
-model = YOLO('/YOLO/model/model.pt')  #change the path if needed
-classes = set()
-results = model(source=0, show= True, conf= 0.4, save= True)
-#results = model(source= 1, stream= True)
-#for r in results:
-#    boxes = r.boxes.cpu().numpy()
-#    for i in boxes.cls:
-#        classes.add(i)
+top = tkinter.Tk()
+global classes
+def run():
+    model = YOLO('/Users/paco/Documents/GitHub/CityUGEF2024_final_project/YOLO/model/model.pt')  #change the path if needed (use model.pt)
+    classes = set()
+    results = model(source=0, show= True, conf= 0.4, save= True)
+    print(set(classes))
 
-print(set(classes))
+B = tkinter.Button(top, text ="press me", command = run)
+B.pack()
+top.mainloop()
+
+#print(set(classes))

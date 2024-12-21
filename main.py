@@ -9,9 +9,9 @@ import spacy
 global input
 
 #Query
-df1 = pd.read_csv('/Users/paco/Downloads/Food.com Recipes/RAW_recipes.csv')
-df2 = pd.read_csv('/Users/paco/Downloads/Food.com Recipes/RAW_interactions.csv')
-nlp_NER = spacy.load('/Users/paco/Documents/GitHub/CityUGEF2024_final_project/Query_sys/NER/output/model-best')
+df1 = pd.read_csv('/Users/paco/Downloads/Food.com Recipes/RAW_recipes.csv')     #change the path if needed 
+df2 = pd.read_csv('/Users/paco/Downloads/Food.com Recipes/RAW_interactions.csv')    #change the path if needed 
+nlp_NER = spacy.load('/Users/paco/Documents/GitHub/CityUGEF2024_final_project/Query_sys/NER/output/model-best') #change the path if needed 
 rating = df2.groupby('recipe_id')['rating'].mean()
 rating = pd.DataFrame(rating)
 rating.index.names = ['id']
@@ -85,16 +85,41 @@ def on_submit():
 top.geometry("414x736")
 top.wm_resizable(False,False)
 
-B = tkinter.Button(top, text ="ENTER THE OBJECT DETECTION", command = runYOLO , bg = "skyblue")
+def on_select(event=None):
+    # Get the indices of the selected items
+    selected_indices = listbox.curselection()
+    
+    # Retrieve the selected values using the indices
+    selected_values = [listbox.get(i) for i in selected_indices]  # Get values for each selected index
+    
+    # Print the selected values
+    print(f"You selected: {', '.join(selected_values)}")  # Display selected items
+
+B = tkinter.Button(top, text ="ENTER THE OBJECT DETECTION", command = runYOLO , bg = "skyblue" , width = 30 , height = 5)
 B.pack()
 
-entry = tkinter.Entry(top, font=("Arial", 14), width=25)
-entry.pack(pady=10)
+label = tkinter.Label(top, text="Do you have other ingredients? Please enter in below ", font=("Arial", 16))  # Create a label with text
+label.pack(pady=20) 
 
-submit_button = tkinter.Button(top, text="Submit", command=on_submit, font=("Arial", 14), bg="#4CAF50", fg="white")
+entry = tkinter.Entry(top, font=("Arial", 14), width=40)
+entry.pack(pady=(10,20))
+
+submit_button = tkinter.Button(top, text="Submit", command=on_submit, font=("Arial", 14), bg="#4CAF50", fg="black")
 submit_button.pack(pady=20)
 
-A = tkinter.Button(top, text ="ENTER THE RECIPE RECOMMEMDATION", command = runRes , bg = "skyblue")
+A = tkinter.Button(top, text ="ENTER THE RECIPE RECOMMEMDATION", command = runRes , bg = "skyblue",width=30 , height=5)
 A.pack()
+
+label = tkinter.Label(top, text="Do you have other disease ? Plese select it below", font=("Arial", 16))  # Create a label with text
+label.pack(pady=20) 
+
+listbox = tkinter.Listbox(top, font=("Arial", 14), height=7 , selectmode = tkinter.MULTIPLE)
+listbox.pack(pady=20)
+
+items = ["heart disease", "diabetes", "obesity", "high cholesterol", "hypertension" , "chronic kidney disease","bowel cancer"]
+for item in items:
+    listbox.insert(tkinter.END, item)
+    
+listbox.bind('<<ListboxSelect>>', on_select)
 
 top.mainloop()

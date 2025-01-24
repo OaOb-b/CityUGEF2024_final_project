@@ -21,7 +21,7 @@ mapping = ['Onion',
 'tomato']
 
 
-FRIDGE = shelve.open('Fridge/FRIDGE', writeback= True)
+FRIDGE = shelve.open(r'YOLO\Fridge\FRIDGE', writeback= True)
 # FRIDGE['Onion'] = deque()
 # FRIDGE['beef'] = deque()
 # FRIDGE['chicken'] = deque()
@@ -47,7 +47,7 @@ class ObjectDetection:
     
     def load_model(self):
        
-        model = YOLO('./model/best_1.pt')  # load a pretrained YOLOv8n model
+        model = YOLO(r'YOLO\model\best_1.pt')  # load a pretrained YOLOv8n model
         model.fuse()
     
         return model
@@ -160,6 +160,7 @@ def get_stock(fridge):
                 hashmap[f'{iid}'] += 1
         
     print(hashmap)
+    return hashmap
     
     
 
@@ -213,5 +214,6 @@ def AskForInput():
     
     return 1
 
-while AskForInput():
-    pass
+if __name__ == '__main__':
+    while AskForInput():
+        pass
